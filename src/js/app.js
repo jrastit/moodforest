@@ -1,21 +1,45 @@
 App = {
     web3Provider: null,
     contracts: {},
+    selected: {
+        "animal": "",
+        "color": 0,
+        "mood": 0
+    },
 
     init: async function() {
         // Load pets.
         $.getJSON('../pets.json', function(data) {
-            var petsRow = $('#petsRow');
-            var petTemplate = $('#petTemplate');
-
-            for (i = 0; i < data.length; i++) {
-
-                petTemplate.find('.panel-title').text(data[i].animal);
-                // petTemplate.find('img').attr('src', data[i].picture);
-                petTemplate.find('.pet-breed').text(App.getColor(data[i].color));
-                petTemplate.find('.pet-age').text(App.getMood(data[i].mood));
-                petTemplate.find('.panel-body')[0].style.background = App.getColor(data[i].color);
-                petsRow.append(petTemplate.html());
+            let animalsRow = $('#animalsRow');
+            let colorsRow = $('#colorsRow');
+            let moodsRow = $('#moodsRow');
+            let animalTemplate = $('#animalTemplate');
+            let colorTemplate = $('#colorTemplate');
+            let moodTemplate = $('#moodTemplate');
+            let animals = data["animals"];
+            let colors = data["colors"];
+            let moods = data["moods"]
+            for (i = 0; i < animals.length; i++) {
+                animalTemplate.find('.display-value').text(animals[i]["animal"]);
+                animalTemplate.find('img').attr('src', animals[i]["picture"]);
+                animalTemplate.find('button')[0].classList.add('bt-animal');
+                animalTemplate.find('button').attr('data-id', animals[i].id);
+                animalTemplate.find('button').attr('data-name', animals[i]["animal"]);
+                animalsRow.append(animalTemplate.html());
+            }
+            for (i = 0; i < colors.length; i++) {
+                colorTemplate.find('.display-value').text(colors[i]["color"]);
+                colorTemplate.find('button')[0].classList.add('bt-color');
+                colorTemplate.find('button').attr('data-id', colors[i].id);
+                colorTemplate.find('button').attr('data-name', colors[i]["color"]);
+                colorsRow.append(colorTemplate.html());
+            }
+            for (i = 0; i < moods.length; i++) {
+                moodTemplate.find('.display-value').text(moods[i]["mood"]);
+                moodTemplate.find('button')[0].classList.add('bt-mood');
+                moodTemplate.find('button').attr('data-id', moods[i].id);
+                moodTemplate.find('button').attr('data-name', moods[i]["mood"]);
+                moodsRow.append(moodTemplate.html());
             }
         });
 
@@ -39,7 +63,9 @@ App = {
     },
 
     bindEvents: function() {
-        $(document).on('click', '.btn-adopt', App.handleAdopt);
+        $('#animalsRow').on('click', '.bt-animal', App.handleAnimal);
+        $('#colorsRow').on('click', '.bt-color', App.handleColor);
+        $('#moodsRow').on('click', '.bt-mood', App.handleMood);
     },
 
     markAdopted: function(adopters, account) {
@@ -48,14 +74,30 @@ App = {
          */
     },
 
-    handleAdopt: function(event) {
+    handleAnimal: function(event) {
         event.preventDefault();
+        let animalName = $(event.target).data('name');
+        App.selected["animal"] = animalName;
+        $('#animalSelected').text(animalName)
+        console.log(App.selected);
+    },
 
-        var petId = parseInt($(event.target).data('id'));
+    handleColor: function(event) {
+        event.preventDefault();
+        let colorId = parseInt($(event.target).data('id'));
+        let colorName = $(event.target).data('name');
+        App.selected["color"] = colorId;
+        $('#colorSelected').text(colorName);
+        console.log(App.selected);
+    },
 
-        /*
-         * Replace me...
-         */
+    handleMood: function(event) {
+        event.preventDefault();
+        let moodId = parseInt($(event.target).data('id'));
+        let moodName = $(event.target).data('name');
+        App.selected["mood"] = moodId;
+        $('#moodSelected').text(moodName);
+        console.log(App.selected);
     },
 
 

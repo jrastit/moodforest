@@ -28,24 +28,55 @@
                 <br/>
             </div>
         </div>
-
-        <div id="petsRow" class="row">
-            <!-- PETS LOAD HERE -->
+        <h1> Select an Animal</h1>
+        <div id="animalsRow" class="row">
+            <!-- Animals LOAD HERE -->
         </div>
+        <h6>You selected : <span id="animalSelected"></span></h6>
+        <h1> Select a Color</h1>
+        <div id="colorsRow" class="row">
+            <!-- Colors LOAD HERE -->
+        </div>
+        <h6>You selected : <span id="colorSelected"></span></h6>
+        <h1> Select a mood</h1>
+        <div id="moodsRow" class="row">
+            <!-- mood LOAD HERE -->
+        </div>
+        <h6>You selected : <span id="moodSelected"></span></h6>
     </div>
 
-    <div id="petTemplate" style="display: none;">
+    <div id="animalTemplate" style="display: none;">
         <div class="col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-default panel-pet">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Animal</h3>
+                <div class="panel-body">
+                    <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="height: 150px;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+                    <br/><br/>
+                    <span class="display-value">sadas</span><br/>
+                    <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="colorTemplate" style="display: none;">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default panel-pet">
                 <div class="panel-body">
                     <!-- <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true"> -->
                     <br/><br/>
-                    <strong style="color: white;">Color</strong>: <span class="pet-breed" style="color: white;"></span><br/>
-                    <strong style="color: white;">Mood</strong>: <span class="pet-age" style="color: white;"></span><br/>
-                    <button class="btn btn-default btn-adopt" type="button" data-id="0">Play</button>
+                    <span class="display-value">sadas</span><br/>
+                    <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="moodTemplate" style="display: none;">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default panel-pet">
+                <div class="panel-body">
+                    <!-- <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true"> -->
+                    <br/><br/>
+                    <span class="display-value">sadas</span><br/>
+                    <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
                 </div>
             </div>
         </div>
