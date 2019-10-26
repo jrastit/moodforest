@@ -26,21 +26,26 @@ contract moodForest {
     constructor() public {
     }
     
-    
-    function addItemTest(uint8 animal, uint8 color, uint8 feeling, uint64 random) public payable{
-        this.addItem(keccak256(abi.encode(random, feeling, color, animal)));
-    }
-    
-    function addItem(bytes32 item) public payable{
-        require(item != 0,"No item set");
+    function addItem(bytes32 item) external payable{
+        require(item != 0,"No animal set");
         require(players[msg.sender].next_item == 0, "Item already set");
         players[msg.sender].next_item = item;
     }
     
+    function addItemTest(uint8 animal, uint8 color, uint8 feeling, uint64 random) external payable returns(address address_sender){
+        require(animal != 0,"No animal set");
+        require(players[msg.sender].next_item == 0, "Item already set");
+        players[msg.sender].next_item = keccak256(abi.encodePacked(animal, color, feeling, random));
+        return (msg.sender);
+    }
+    
+    function getItem() public view returns(address address_sender){
+        return (msg.sender);
+    }
     
     function cancelItem() public payable{
         require(players[msg.sender].next_item != 0, "Item not set");
-        players[msg.sender].next_item == 0;
+        players[msg.sender].next_item = 0;
     }
     
     function addBet(address player, uint8 animal, uint8 color, uint8 feeling) public payable{
@@ -55,15 +60,17 @@ contract moodForest {
         require(feeling != 0, "no feeling");
         require(random != 0, "no random");
         require(players[msg.sender].next_item != 0, "no player item");
-        require(keccak256(abi.encode(random, feeling, color, animal)) == players[msg.sender].next_item, "no random");
+        require(keccak256(abi.encodePacked(animal, color, feeling, random)) == players[msg.sender].next_item, "no match hash");
         Player memory owner = players[msg.sender];
-        for (uint8 i = 0;i < players[msg.sender].nb_bets; i++){
-            if (owner.bet[i].animal == animal){
-                Player memory winner = players[players[msg.sender].bet[i].owner];
-                winner.item[winner.nb_bets].animal == animal;
-                winner.item[winner.nb_bets].color == color;
-                winner.item[winner.nb_bets].feeling == feeling;
-                winner.nb_bets++;
+        if (players[msg.sender].nb_bets != 0){
+            for (uint8 i = 0;i < players[msg.sender].nb_bets; i++){
+                if (owner.bet[i].animal == animal){
+                    Player memory winner = players[players[msg.sender].bet[i].owner];
+                    winner.item[winner.nb_bets].animal == animal;
+                    winner.item[winner.nb_bets].color == color;
+                    winner.item[winner.nb_bets].feeling == feeling;
+                    winner.nb_bets++;
+                }
             }
         }
     }
