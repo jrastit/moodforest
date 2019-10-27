@@ -298,9 +298,11 @@ var abi = [
 
 var MoodForestContract = web3.eth.contract(abi);
 //rinkbi
-//var address = '0xeD28C940d341810004809bAd70BDE61E3C662bF1';
+var address = '0xeD28C940d341810004809bAd70BDE61E3C662bF1';
 //matic
-var address = '0x92604A186DE35D9c1331596eE8d32c59f64A168F';
+if (web3.version.network == 8995){
+    address = '0x92604A186DE35D9c1331596eE8d32c59f64A168F';
+}
 var MoodForestC = MoodForestContract.at(address);
 
 

@@ -1,3 +1,5 @@
+var json_data;
+
 App = {
     web3Provider: null,
     contracts: {},
@@ -32,6 +34,7 @@ App = {
         // if (!trans.length > 0) {
         // Load pets.
         $.getJSON('../pets.json', function(data) {
+            json_data = data;
             let animalsRow = $('#animalsRow');
             let colorsRow = $('#colorsRow');
             let moodsRow = $('#moodsRow');
@@ -236,6 +239,37 @@ App = {
             $('#chose').hide();
         }
         if (name == "animal"){
+            $.getJSON('../pets.json', function(data) {
+            let animalTemplate = $('#animalTemplate');
+            let colorTemplate = $('#colorTemplate');
+            let moodTemplate = $('#moodTemplate');
+            let animals = data["animals"];
+            let colors = data["colors"];
+            let moods = data["moods"]
+
+                i = window.localStorage.getItem('animal') - 1;                
+                    animalTemplate.find(".panel-body").attr('id', "div_animal_" + animals[i].id);
+                    animalTemplate.find('.display-value').text(animals[i]["animal"]);
+                    animalTemplate.find('img').attr('src', animals[i]["picture"]);
+                    animalTemplate.find('button').hide();
+                
+
+
+                i = window.localStorage.getItem('color') - 1;                
+                
+                    colorTemplate.find('.display-value').text(colors[i]["color"]);
+                    colorTemplate.find('img').attr('src', colors[i]["picture"]);
+                    colorTemplate.find('button').hide();
+                
+
+                i = window.localStorage.getItem('feeling') - 1;
+                
+                    moodTemplate.find('.display-value').text(moods[i]["mood"]);
+                    moodTemplate.find('img').attr('src', moods[i]["picture"]);
+                    moodTemplate.find('button').hide();
+                    moodsRow.append(moodTemplate.html());
+                
+});
             $('#animal').show();        
         }else{
             $('#animal').hide();
