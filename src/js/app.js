@@ -55,6 +55,7 @@ App = {
             if (colorsRow.length) {
                 for (i = 0; i < colors.length; i++) {
                     colorTemplate.find('.display-value').text(colors[i]["color"]);
+                    colorTemplate.find('img').attr('src', color[i]["picture"]);
                     colorTemplate.find('button')[0].classList.add('bt-color');
                     colorTemplate.find('button').attr('data-id', colors[i].id);
                     colorTemplate.find('button').attr('data-name', colors[i]["color"]);
