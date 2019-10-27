@@ -324,7 +324,7 @@ function remix_wait_for_no_animal_callback(err, link) {
         alert("Error : " + err);
     } else {
 	    if (link != 0 && link != "0x"){
-            setTimeout(remix_wait_for_no_animal(), 1000);
+            setTimeout(function(){remix_wait_for_no_animal()}, 1000);
         }else{
             App.addAlert("You have canceled your animal");
             App.displayPage("chose");
@@ -348,7 +348,7 @@ function remix_wait_for_animal_callback(err, link) {
             App.addAlert("You have created an animal: "  + animal + " " + color + " " + feeling + " : " + link);
             App.displayPage("animal");
         }else{
-            setTimeout(remix_wait_for_animal(), 1000);;
+            setTimeout(function(){remix_wait_for_animal()}, 1000);;
         }    
     }
 }
@@ -388,7 +388,7 @@ function remix_cancel_animal_callback(err, ans) {
         alert("Error : " + err);
     } else {
 	    App.addAlert("Animal canceling ...");
-	    setTimeout(remix_wait_for_no_animal(), 1000);
+	    setTimeout(function(){ remix_wait_for_no_animal()}, 1000);
     }
 }
 
@@ -420,7 +420,7 @@ function remix_submit_animal_callback(err, link, link2) {
         alert("Error : " + err);
     } else {
         App.addAlert("Animal creation ... ");        
-        setTimeout(remix_wait_for_animal(), 1000);;  
+        setTimeout(function(){ remix_wait_for_animal()}, 1000); 
         
     }
 }

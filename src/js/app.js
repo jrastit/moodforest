@@ -198,12 +198,12 @@ App = {
 
     createAnimal: function () {
         this.displayPage("wait");
-        remix_submit_animal(1, 2, 3);
+        remix_submit_animal(App.selected["animal"], App.selected["color"], App.selected["mood"]);
     },
 
     cancelAnimal: function () {
         this.displayPage("wait");
-        remix_cancel_animal(1, 2, 3);
+        remix_cancel_animal();
     },
 
     addAlert: function (message) {
