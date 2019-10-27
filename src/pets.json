@@ -33,15 +33,18 @@
     ],
     "moods": [{
             "id": 1,
-            "mood": "Happy"
+            "mood": "Happy",
+            "picture": "images/happy.jpg"
         },
         {
             "id": 2,
-            "mood": "Sad"
+            "mood": "Sad",
+            "picture": "images/sad.jpg"
         },
         {
             "id": 3,
-            "mood": "Embarassed"
+            "mood": "Embarassed",
+            "picture": "images/embarassed.jpg"
         }
     ]
 }
