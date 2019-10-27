@@ -8,40 +8,61 @@ App = {
     },
 
     init: async function() {
-        // Load pets.
-        $.getJSON('../pets.json', function(data) {
-            let animalsRow = $('#animalsRow');
-            let colorsRow = $('#colorsRow');
-            let moodsRow = $('#moodsRow');
-            let animalTemplate = $('#animalTemplate');
-            let colorTemplate = $('#colorTemplate');
-            let moodTemplate = $('#moodTemplate');
-            let animals = data["animals"];
-            let colors = data["colors"];
-            let moods = data["moods"]
-            for (i = 0; i < animals.length; i++) {
-                animalTemplate.find('.display-value').text(animals[i]["animal"]);
-                animalTemplate.find('img').attr('src', animals[i]["picture"]);
-                animalTemplate.find('button')[0].classList.add('bt-animal');
-                animalTemplate.find('button').attr('data-id', animals[i].id);
-                animalTemplate.find('button').attr('data-name', animals[i]["animal"]);
-                animalsRow.append(animalTemplate.html());
-            }
-            for (i = 0; i < colors.length; i++) {
-                colorTemplate.find('.display-value').text(colors[i]["color"]);
-                colorTemplate.find('button')[0].classList.add('bt-color');
-                colorTemplate.find('button').attr('data-id', colors[i].id);
-                colorTemplate.find('button').attr('data-name', colors[i]["color"]);
-                colorsRow.append(colorTemplate.html());
-            }
-            for (i = 0; i < moods.length; i++) {
-                moodTemplate.find('.display-value').text(moods[i]["mood"]);
-                moodTemplate.find('button')[0].classList.add('bt-mood');
-                moodTemplate.find('button').attr('data-id', moods[i].id);
-                moodTemplate.find('button').attr('data-name', moods[i]["mood"]);
-                moodsRow.append(moodTemplate.html());
-            }
-        });
+        //check if query param is present
+        let trans = await App.getQueryParams();
+        console.log(trans)
+        if (trans.length > 0) {
+            $("#bet").show()
+            $("#create-bet").hide()
+
+            // from remix-contract.js
+            check_if_exist(trans);
+        } else {
+            $("#bet").hide()
+            $("#create-bet").show()
+        }
+        if (!trans.length > 0) {
+            // Load pets.
+            $.getJSON('../pets.json', function(data) {
+                let animalsRow = $('#animalsRow');
+                let colorsRow = $('#colorsRow');
+                let moodsRow = $('#moodsRow');
+                let animalTemplate = $('#animalTemplate');
+                let colorTemplate = $('#colorTemplate');
+                let moodTemplate = $('#moodTemplate');
+                let animals = data["animals"];
+                let colors = data["colors"];
+                let moods = data["moods"]
+                if (animalsRow.length) {
+                    for (i = 0; i < animals.length; i++) {
+                        animalTemplate.find('.display-value').text(animals[i]["animal"]);
+                        animalTemplate.find('img').attr('src', animals[i]["picture"]);
+                        animalTemplate.find('button')[0].classList.add('bt-animal');
+                        animalTemplate.find('button').attr('data-id', animals[i].id);
+                        animalTemplate.find('button').attr('data-name', animals[i]["animal"]);
+                        animalsRow.append(animalTemplate.html());
+                    }
+                }
+                if (colorsRow.length) {
+                    for (i = 0; i < colors.length; i++) {
+                        colorTemplate.find('.display-value').text(colors[i]["color"]);
+                        colorTemplate.find('button')[0].classList.add('bt-color');
+                        colorTemplate.find('button').attr('data-id', colors[i].id);
+                        colorTemplate.find('button').attr('data-name', colors[i]["color"]);
+                        colorsRow.append(colorTemplate.html());
+                    }
+                }
+                if (moodsRow.length) {
+                    for (i = 0; i < moods.length; i++) {
+                        moodTemplate.find('.display-value').text(moods[i]["mood"]);
+                        moodTemplate.find('button')[0].classList.add('bt-mood');
+                        moodTemplate.find('button').attr('data-id', moods[i].id);
+                        moodTemplate.find('button').attr('data-name', moods[i]["mood"]);
+                        moodsRow.append(moodTemplate.html());
+                    }
+                }
+            });
+        }
 
         return await App.initWeb3();
     },
@@ -139,6 +160,27 @@ App = {
             default:
                 return 0
         }
+    },
+    getQueryParams: function() {
+        console.log("url", document.URL);
+        let url = document.URL;
+        var qparams = {},
+            parts = (url || '').split('?'),
+            qparts, qpart,
+            i = 0;
+
+        if (parts.length <= 1) {
+            return qparams;
+        } else {
+            qparts = parts[1].split('&');
+            for (i in qparts) {
+
+                qpart = qparts[i].split('=');
+                qparams[decodeURIComponent(qpart[0])] =
+                    decodeURIComponent(qpart[1] || '');
+            }
+        }
+        return qparams.bet;
     }
 
 
