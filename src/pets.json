@@ -17,15 +17,18 @@
     ],
     "colors": [{
             "id": 1,
-            "color": "Red"
+            "color": "Red",
+            "picture": "images/red.png"
         },
         {
             "id": 2,
-            "color": "Blue"
+            "color": "Blue",
+            "picture": "images/blue.png"
         },
         {
             "id": 3,
-            "color": "Green"
+            "color": "Green",
+            "picture": "images/green.png"
         }
     ],
     "moods": [{
