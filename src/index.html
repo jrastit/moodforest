@@ -30,9 +30,12 @@
         </div>
         <div id="bet">
             <!-- <button onclick="App.getQueryParams()">heyy</button> -->
-            <p>betting page data will load here</p>
+            <h1>Bet</h1>
         </div>
         <div id="create-bet">
+            <h1>Create a New Bet</h1>
+        </div>
+        <div class="diplay-options">
             <h1> Select an Animal</h1>
             <div id="animalsRow" class="row">
                 <!-- Animals LOAD HERE -->
@@ -50,10 +53,11 @@
             <h6>You selected : <span id="moodSelected"></span></h6>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-push-2">
-                    <button class="btn btn-primary btn-lg" onclick="App.createTransaction()">Submit</button>
+                    <button id="formButton" class="btn btn-primary btn-lg">Submit</button>
                 </div>
             </div>
         </div>
+
     </div>
 
     <div id="animalTemplate" style="display: none;">

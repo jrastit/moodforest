@@ -6,63 +6,69 @@ App = {
         "color": 0,
         "mood": 0
     },
+    trans_id: "",
 
     init: async function() {
         //check if query param is present
         let trans = await App.getQueryParams();
+        App.trans_id = trans;
         console.log(trans)
         if (trans.length > 0) {
             $("#bet").show()
             $("#create-bet").hide()
+            $('#formButton').text("BET");
+            $('#formButton').off().on('click', function() { App.betNow() });
 
             // from remix-contract.js
             check_if_exist(trans);
         } else {
             $("#bet").hide()
             $("#create-bet").show()
+            $('#formButton').text("SUBMIT");
+            $('#formButton').off().on('click', function() { App.createTransaction() });
         }
-        if (!trans.length > 0) {
-            // Load pets.
-            $.getJSON('../pets.json', function(data) {
-                let animalsRow = $('#animalsRow');
-                let colorsRow = $('#colorsRow');
-                let moodsRow = $('#moodsRow');
-                let animalTemplate = $('#animalTemplate');
-                let colorTemplate = $('#colorTemplate');
-                let moodTemplate = $('#moodTemplate');
-                let animals = data["animals"];
-                let colors = data["colors"];
-                let moods = data["moods"]
-                if (animalsRow.length) {
-                    for (i = 0; i < animals.length; i++) {
-                        animalTemplate.find('.display-value').text(animals[i]["animal"]);
-                        animalTemplate.find('img').attr('src', animals[i]["picture"]);
-                        animalTemplate.find('button')[0].classList.add('bt-animal');
-                        animalTemplate.find('button').attr('data-id', animals[i].id);
-                        animalTemplate.find('button').attr('data-name', animals[i]["animal"]);
-                        animalsRow.append(animalTemplate.html());
-                    }
+        // if (!trans.length > 0) {
+        // Load pets.
+        $.getJSON('../pets.json', function(data) {
+            let animalsRow = $('#animalsRow');
+            let colorsRow = $('#colorsRow');
+            let moodsRow = $('#moodsRow');
+            let animalTemplate = $('#animalTemplate');
+            let colorTemplate = $('#colorTemplate');
+            let moodTemplate = $('#moodTemplate');
+            let animals = data["animals"];
+            let colors = data["colors"];
+            let moods = data["moods"]
+            if (animalsRow.length) {
+                for (i = 0; i < animals.length; i++) {
+                    animalTemplate.find('.display-value').text(animals[i]["animal"]);
+                    animalTemplate.find('img').attr('src', animals[i]["picture"]);
+                    animalTemplate.find('button')[0].classList.add('bt-animal');
+                    animalTemplate.find('button').attr('data-id', animals[i].id);
+                    animalTemplate.find('button').attr('data-name', animals[i]["animal"]);
+                    animalsRow.append(animalTemplate.html());
                 }
-                if (colorsRow.length) {
-                    for (i = 0; i < colors.length; i++) {
-                        colorTemplate.find('.display-value').text(colors[i]["color"]);
-                        colorTemplate.find('button')[0].classList.add('bt-color');
-                        colorTemplate.find('button').attr('data-id', colors[i].id);
-                        colorTemplate.find('button').attr('data-name', colors[i]["color"]);
-                        colorsRow.append(colorTemplate.html());
-                    }
+            }
+            if (colorsRow.length) {
+                for (i = 0; i < colors.length; i++) {
+                    colorTemplate.find('.display-value').text(colors[i]["color"]);
+                    colorTemplate.find('button')[0].classList.add('bt-color');
+                    colorTemplate.find('button').attr('data-id', colors[i].id);
+                    colorTemplate.find('button').attr('data-name', colors[i]["color"]);
+                    colorsRow.append(colorTemplate.html());
                 }
-                if (moodsRow.length) {
-                    for (i = 0; i < moods.length; i++) {
-                        moodTemplate.find('.display-value').text(moods[i]["mood"]);
-                        moodTemplate.find('button')[0].classList.add('bt-mood');
-                        moodTemplate.find('button').attr('data-id', moods[i].id);
-                        moodTemplate.find('button').attr('data-name', moods[i]["mood"]);
-                        moodsRow.append(moodTemplate.html());
-                    }
+            }
+            if (moodsRow.length) {
+                for (i = 0; i < moods.length; i++) {
+                    moodTemplate.find('.display-value').text(moods[i]["mood"]);
+                    moodTemplate.find('button')[0].classList.add('bt-mood');
+                    moodTemplate.find('button').attr('data-id', moods[i].id);
+                    moodTemplate.find('button').attr('data-name', moods[i]["mood"]);
+                    moodsRow.append(moodTemplate.html());
                 }
-            });
-        }
+            }
+        });
+        // }
 
         return await App.initWeb3();
     },
@@ -131,6 +137,13 @@ App = {
         App.selected["mood"] = moodId;
         $('#moodSelected').text(moodName);
         console.log(App.selected);
+    },
+
+    betNow: function() {
+        console.log("betnow called");
+        // do the bet with 
+        // App.selected
+        // App.transaction
     },
 
 
