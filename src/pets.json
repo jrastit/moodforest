@@ -77,61 +77,109 @@
         },
         {
             "id": 4,
-            "animal": "Black",
+            "color": "Black",
             "picture": "images/black.png"
         },
         {
             "id": 5,
-            "animal": "Brown",
+            "color": "Brown",
             "picture": "images/brown.png"
         },
         {
             "id": 6,
-            "animal": "Orange",
+            "color": "Orange",
             "picture": "images/orange.png"
         },
         {
             "id": 7,
-            "animal": "Pink",
+            "color": "Pink",
             "picture": "images/pink.png"
         },
         {
             "id": 8,
-            "animal": "Purple",
+            "color": "Purple",
             "picture": "images/purple.png"
         },
         {
             "id": 9,
-            "animal": "White",
+            "color": "White",
             "picture": "images/white.png"
         },
         {
             "id": 10,
-            "animal": "Yellow",
+            "color": "Yellow",
             "picture": "images/yellow.png"
         },
         {
             "id": 11,
-            "animal": "Grey",
+            "color": "Grey",
             "picture": "images/grey.png"
         },
         {
             "id": 12,
-            "animal": "Skin",
+            "color": "Skin",
             "picture": "images/skin.png"
         }
     ],
     "moods": [{
             "id": 1,
-            "mood": "Happy"
+            "mood": "Happy",
+            "picture": "images/cow.jpg"
         },
         {
             "id": 2,
-            "mood": "Sad"
+            "mood": "Sad",
+            "picture": "images/cow.jpg"
         },
         {
             "id": 3,
-            "mood": "Embarassed"
+            "mood": "Embarassed",
+            "picture": "images/cow.jpg"
+        },
+        {
+            "id": 4,
+            "mood": "Angry",
+            "picture": "images/angry.jpg"
+        },
+        {
+            "id": 5,
+            "mood": "Confused",
+            "picture": "images/confuse.jpg"
+        },
+        {
+            "id": 6,
+            "mood": "Hungry",
+            "picture": "images/hungry.jpg"
+        },
+        {
+            "id": 7,
+            "mood": "Nervous",
+            "picture": "images/nervous.jpg"
+        },
+        {
+            "id": 8,
+            "mood": "Shock",
+            "picture": "images/shock.jpg"
+        },
+        {
+            "id": 9,
+            "mood": "Sick",
+            "picture": "images/sick.jpg"
+        },
+        {
+            "id": 10,
+            "mood": "Silly",
+            "picture": "images/silly.jpg"
+        },
+        {
+            "id": 11,
+            "mood": "Sleepy",
+            "picture": "images/sleepy.jpg"
+        },
+        {
+            "id": 12,
+            "mood": "Thinking",
+            "picture": "images/think.jpg"
         }
     ]
 }
