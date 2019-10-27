@@ -368,6 +368,7 @@ function remix_wait_for_animal_callback(err, link) {
             animal = window.localStorage.getItem('animal');
             color = window.localStorage.getItem('color');
             feeling = window.localStorage.getItem('feeling');
+            App.setlink(link); 
             App.addAlert("You have created an animal: "  + animal + " " + color + " " + feeling + " : " + link);
             App.displayPage("animal");
         }else{
@@ -391,6 +392,7 @@ function remix_has_animal_callback(err, link) {
         animal = window.localStorage.getItem('animal');
         color = window.localStorage.getItem('color');
         feeling = window.localStorage.getItem('feeling');
+        App.setlink(link);
 		App.addAlert("You have an animal: "  + animal + " " + color + " " + feeling + " : " + link);
 		App.displayPage("animal");
 	}else{

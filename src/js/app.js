@@ -225,6 +225,11 @@ App = {
         remix_cancel_animal();
     },
 
+    setlink: function (link) {
+        link="https://moodforest.com?addr=" + link;
+        this.addAlert("Make your friends guess, share the link: <a href='" + link + "'>" + link + "</a>");    
+    },
+
     addAlert: function (message) {
     $('#alerts').append(
         '<div class="alert alert-info">' +
