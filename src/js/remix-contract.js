@@ -280,10 +280,14 @@ function remix_submit_animal(animal, color, feeling) {
         gas: 2100000,
         from: web3.eth.accounts[0],
     };
-    MoodForestC.addItemTest(animal, color, feeling, random_value, params, console.log);
+    MoodForestC.addItemTest(animal, color, feeling, random_value, params, remix_submit_animal_callback)
 
 }
 
-function remix_submit_animal_callback(link) {
-    alert("Link: " + link);
+function remix_submit_animal_callback(err, link) {
+    if (err) {
+        alert("Error : " + err);
+    } else {
+        alert("Link: " + link);
+    }
 }
