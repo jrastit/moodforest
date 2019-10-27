@@ -355,6 +355,7 @@ function remix_wait_for_animal_callback(err, link) {
     
 
 function remix_has_animal() {
+
     console.log("check annimal");
     MoodForestC.hasItem(params_remix_free, remix_has_animal_callback)
 }
@@ -376,7 +377,6 @@ function remix_has_animal_callback(err, link) {
     }
 }
 
-remix_has_animal();
 
 function remix_cancel_animal() {
     console.log("cancel annimal");
@@ -392,16 +392,17 @@ function remix_cancel_animal_callback(err, ans) {
     }
 }
 
-function remix_bet_on_animal(user_key, animal, color, feeling) {
+function remix_bet_animal(animal, color, feeling, user_key) {
     console.log("creating bet ", user_key, animal, color, feeling);
-    MoodForestC.addItemTest(animal, color, feeling, random_value, params_remix, remix_bet_on_animal_callback);
+    MoodForestC.addBet(user_key, animal, color, feeling, params_remix, remix_bet_animal_callback);
 }
 
-function remix_bet_on_animal_callback(err, ans) {
+function remix_bet_animal_callback(err, ans) {
     if (err) {
         alert("Error : " + err);
     } else {
-        alert("Bet ok");
+        App.addAlert("The Bet is on the Way");
+        App.displayPage("bet_ok");
     }
 }
 
@@ -422,6 +423,24 @@ function remix_submit_animal_callback(err, link, link2) {
         App.addAlert("Animal creation ... ");        
         setTimeout(function(){ remix_wait_for_animal()}, 1000); 
         
+    }
+}
+
+function remix_check_animal() {
+    console.log("check animal");
+    random_value = window.localStorage.getItem('random_value');
+    animal = window.localStorage.getItem('animal');
+    color = window.localStorage.getItem('color');
+    feeling = window.localStorage.getItem('feeling');
+    MoodForestC.checkBet(animal, color, feeling, random_value, params_remix, remix_check_animal_callback)
+}
+
+function remix_check_animal_callback(err, link) {
+    if (err) {
+        alert("Error : " + err);
+    } else {
+        App.addAlert("Animal check ... ");        
+        setTimeout(function(){ remix_wait_for_no_animal()}, 1000); 
     }
 }
 

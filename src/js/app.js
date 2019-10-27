@@ -10,6 +10,7 @@ App = {
 
     init: async function() {
         //check if query param is present
+        /*        
         let trans = await App.getQueryParams();
         App.trans_id = trans;
         console.log(trans)
@@ -27,6 +28,7 @@ App = {
             $('#formButton').text("SUBMIT");
             $('#formButton').off().on('click', function() { App.createTransaction() });
         }
+        */
         // if (!trans.length > 0) {
         // Load pets.
         $.getJSON('../pets.json', function(data) {
@@ -41,6 +43,7 @@ App = {
             let moods = data["moods"]
             if (animalsRow.length) {
                 for (i = 0; i < animals.length; i++) {
+                    animalTemplate.find(".panel-body").attr('id', "div_animal_" + animals[i].id);
                     animalTemplate.find('.display-value').text(animals[i]["animal"]);
                     animalTemplate.find('img').attr('src', animals[i]["picture"]);
                     animalTemplate.find('button')[0].classList.add('bt-animal');
@@ -117,6 +120,7 @@ App = {
         let animalId = parseInt($(event.target).data('id'));
         let animalName = $(event.target).data('name');
         App.selected["animal"] = animalId;
+        $('#div_animal_' + animalId).css("backgroud-color", "blue");
         $('#animalSelected').text(animalName)
         console.log(App.selected);
     },
@@ -196,9 +200,19 @@ App = {
         return qparams.bet;
     },
 
+    betAnimal: function () {
+        this.displayPage("wait");
+        remix_bet_animal(App.selected["animal"], App.selected["color"], App.selected["mood"], addr_animal);
+    },
+
     createAnimal: function () {
         this.displayPage("wait");
         remix_submit_animal(App.selected["animal"], App.selected["color"], App.selected["mood"]);
+    },
+
+    checkAnimal: function () {
+        this.displayPage("wait");
+        remix_check_animal();
     },
 
     cancelAnimal: function () {
