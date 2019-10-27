@@ -194,8 +194,43 @@ App = {
             }
         }
         return qparams.bet;
-    }
+    },
 
+    createAnimal: function () {
+        this.displayPage("wait");
+        remix_submit_animal(1, 2, 3);
+    },
+
+    cancelAnimal: function () {
+        this.displayPage("wait");
+        remix_cancel_animal(1, 2, 3);
+    },
+
+    addAlert: function (message) {
+    $('#alerts').append(
+        '<div class="alert alert-info">' +
+            '<button type="button" class="close" data-dismiss="alert">' +
+            '&times;</button>' + message + '</div>');
+    },
+
+    displayPage: function (name) {
+        if (name == "chose"){
+            $('#chose').show();        
+        }else{
+            $('#chose').hide();
+        }
+        if (name == "animal"){
+            $('#animal').show();        
+        }else{
+            $('#animal').hide();
+        }
+        if (name == "wait"){
+            $('#wait').show();        
+        }else{
+            $('#wait').hide();
+        }
+
+    }
 
 };
 

@@ -21,6 +21,7 @@
 
 <body>
     <div class="container">
+        
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-push-2">
                 <h1 class="text-center">Mood Forest</h1>
@@ -28,75 +29,95 @@
                 <br/>
             </div>
         </div>
-        <div id="bet">
+
+        <div class="row">
+            <div class="col" id="alerts"></div>
+        </div>
+
+        <div class="row" id="animal" style="display: none;">
+            <h1>Animal</h1>
+               to do...
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <button id="cancelAnimalButton" class="btn btn-primary btn-lg" onclick="App.cancelAnimal();">Cancel :(</button>
+            </div>
+        </div>
+
+        <div class="row" id="bet" style="display: none;">
             <!-- <button onclick="App.getQueryParams()">heyy</button> -->
-            <h1>Bet</h1>
-        </div>
-        <div id="create-bet">
-            <h1>Create a New Bet</h1>
-        </div>
-        <div class="diplay-options">
-            <h1> Select an Animal</h1>
-            <div id="animalsRow" class="row">
-                <!-- Animals LOAD HERE -->
+            <div>
+                <h1>Bet</h1>
             </div>
-            <h6>You selected : <span id="animalSelected"></span></h6>
-            <h1> Select a Color</h1>
-            <div id="colorsRow" class="row">
-                <!-- Colors LOAD HERE -->
+            <div class="row" id="create-bet">
+                <h1>Create a New Bet</h1>
             </div>
-            <h6>You selected : <span id="colorSelected"></span></h6>
-            <h1> Select a mood</h1>
-            <div id="moodsRow" class="row">
-                <!-- mood LOAD HERE -->
-            </div>
-            <h6>You selected : <span id="moodSelected"></span></h6>
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-sm-push-2">
-                    <button id="formButton" class="btn btn-primary btn-lg">Submit</button>
+            <div class="diplay-options">
+                <h1> Select an Animal</h1>
+                <div id="animalsRow" class="row">
+                    <!-- Animals LOAD HERE -->
+                </div>
+                <h6>You selected : <span id="animalSelected"></span></h6>
+                <h1> Select a Color</h1>
+                <div id="colorsRow" class="row">
+                    <!-- Colors LOAD HERE -->
+                </div>
+                <h6>You selected : <span id="colorSelected"></span></h6>
+                <h1> Select a mood</h1>
+                <div id="moodsRow" class="row">
+                    <!-- mood LOAD HERE -->
+                </div>
+                <h6>You selected : <span id="moodSelected"></span></h6>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                        <button id="formButton" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
-
-    <div id="animalTemplate" style="display: none;">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="panel panel-default panel-pet">
-                <div class="panel-body">
-                    <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="height: 150px;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
-                    <br/><br/>
-                    <span class="display-value">sadas</span><br/>
-                    <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
+    <div id="chose" style="display: none;">
+        <div id="animalTemplate">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="panel panel-default panel-pet">
+                    <div class="panel-body">
+                        <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="height: 150px;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+                        <br/><br/>
+                        <span class="display-value">sadas</span><br/>
+                        <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
+                    </div>
+                </div>
+         </div>
+        </div>
+        <div id="colorTemplate">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="panel panel-default panel-pet">
+                    <div class="panel-body">
+                        <!-- <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true"> -->
+                        <br/><br/>
+                        <span class="display-value">sadas</span><br/>
+                        <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="colorTemplate" style="display: none;">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="panel panel-default panel-pet">
-                <div class="panel-body">
-                    <!-- <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true"> -->
-                    <br/><br/>
-                    <span class="display-value">sadas</span><br/>
-                    <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
+        <div id="moodTemplate">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="panel panel-default panel-pet">
+                    <div class="panel-body">
+                        <!-- <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true"> -->
+                        <br/><br/>
+                        <span class="display-value">sadas</span><br/>
+                        <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="moodTemplate" style="display: none;">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="panel panel-default panel-pet">
-                <div class="panel-body">
-                    <!-- <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true"> -->
-                    <br/><br/>
-                    <span class="display-value">sadas</span><br/>
-                    <button class="btn btn-default" type="button" data-id="0" data-name="abc">Select</button>
-                </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <button id="choseButton" class="btn btn-primary btn-lg" onclick="App.createAnimal();">Submit</button>
             </div>
         </div>
     </div>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
