@@ -297,7 +297,7 @@ var abi = [
 ];
 
 var MoodForestContract = web3.eth.contract(abi);
-var address = '0xdC04977a2078C8FFDf086D618d1f961B6C546222';
+var address = '0xeD28C940d341810004809bAd70BDE61E3C662bF1';
 var MoodForestC = MoodForestContract.at(address);
 
 
@@ -325,6 +325,7 @@ function remix_has_animal_callback(err, link) {
     } else {
 	if (link != 0 && link != "0x"){
 		App.addAlert("You have an animal: " + link);
+		App.displayPage("animal");
 	}else{
 		App.addAlert("You have not chose an animal today");
 		App.displayPage("chose");
@@ -368,11 +369,11 @@ function remix_submit_animal(animal, color, feeling) {
     MoodForestC.addItemTest(animal, color, feeling, random_value, params_remix, remix_submit_animal_callback)
 }
 
-function remix_submit_animal_callback(err, link) {
+function remix_submit_animal_callback(err, link, link2) {
     if (err) {
         alert("Error : " + err);
     } else {
-        App.addAlert("Animal created " + link);
+        App.addAlert("Animal created " + link + " " + link2);
 	App.displayPage("animal");
     }
 }
