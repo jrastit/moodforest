@@ -124,17 +124,17 @@
     "moods": [{
             "id": 1,
             "mood": "Happy",
-            "picture": "images/cow.jpg"
+            "picture": "images/happy.jpg"
         },
         {
             "id": 2,
             "mood": "Sad",
-            "picture": "images/cow.jpg"
+            "picture": "images/sad.jpg"
         },
         {
             "id": 3,
             "mood": "Embarassed",
-            "picture": "images/cow.jpg"
+            "picture": "images/embarassed.jpg"
         },
         {
             "id": 4,
