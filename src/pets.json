@@ -13,7 +13,7 @@
             "id": 3,
             "animal": "Cat",
             "picture": "images/cat.jpg"
-        }
+        },
         {
             "id": 4,
             "animal": "Monkey",
@@ -43,7 +43,7 @@
             "id": 9,
             "animal": "Giraffe",
             "picture": "images/giraffe.jpg"
-        }
+        },
         {
             "id": 10,
             "animal": "Kangaroo",
@@ -89,7 +89,7 @@
             "id": 6,
             "animal": "Orange",
             "picture": "images/orange.png"
-        }
+        },
         {
             "id": 7,
             "animal": "Pink",
