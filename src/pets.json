@@ -28,6 +28,36 @@
             "id": 6,
             "animal": "Cow",
             "picture": "images/cow.jpg"
+        },
+        {
+            "id": 7,
+            "animal": "Bear",
+            "picture": "images/bear.jpg"
+        },
+        {
+            "id": 8,
+            "animal": "Dog",
+            "picture": "images/dog.jpg"
+        },
+        {
+            "id": 9,
+            "animal": "Giraffe",
+            "picture": "images/giraffe.jpg"
+        },
+        {
+            "id": 10,
+            "animal": "Kangaroo",
+            "picture": "images/kangaroo.jpg"
+        },
+        {
+            "id": 11,
+            "animal": "Koala",
+            "picture": "images/koala.jpg"
+        },
+        {
+            "id": 12,
+            "animal": "Wolf",
+            "picture": "images/wolf.jpg"
         }
     ],
     "colors": [{
@@ -44,6 +74,51 @@
             "id": 3,
             "color": "Green",
             "picture": "images/green.png"
+        },
+        {
+            "id": 4,
+            "animal": "Black",
+            "picture": "images/black.png"
+        },
+        {
+            "id": 5,
+            "animal": "Brown",
+            "picture": "images/brown.png"
+        },
+        {
+            "id": 6,
+            "animal": "Orange",
+            "picture": "images/orange.png"
+        },
+        {
+            "id": 7,
+            "animal": "Pink",
+            "picture": "images/pink.png"
+        },
+        {
+            "id": 8,
+            "animal": "Purple",
+            "picture": "images/purple.png"
+        },
+        {
+            "id": 9,
+            "animal": "White",
+            "picture": "images/white.png"
+        },
+        {
+            "id": 10,
+            "animal": "Yellow",
+            "picture": "images/yellow.png"
+        },
+        {
+            "id": 11,
+            "animal": "Grey",
+            "picture": "images/grey.png"
+        },
+        {
+            "id": 12,
+            "animal": "Skin",
+            "picture": "images/skin.png"
         }
     ],
     "moods": [{
