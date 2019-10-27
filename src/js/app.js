@@ -2,7 +2,7 @@ App = {
     web3Provider: null,
     contracts: {},
     selected: {
-        "animal": "",
+        "animal": 0,
         "color": 0,
         "mood": 0
     },
@@ -74,10 +74,22 @@ App = {
          */
     },
 
+    createTransaction: function() {
+        if (App.selected["animal"] == 0 ||
+            App.selected["color"] == 0 ||
+            App.selected["mood"] == 0) {
+            alert("Please selected all of the three");
+            return;
+        }
+        // function from remix-contract.js
+        remix_submit_animal(App.selected["animal"], App.selected["color"], App.selected["mood"]);
+    },
+
     handleAnimal: function(event) {
         event.preventDefault();
+        let animalId = parseInt($(event.target).data('id'));
         let animalName = $(event.target).data('name');
-        App.selected["animal"] = animalName;
+        App.selected["animal"] = animalId;
         $('#animalSelected').text(animalName)
         console.log(App.selected);
     },
