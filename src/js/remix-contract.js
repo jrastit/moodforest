@@ -312,6 +312,46 @@ var params_remix = {
         gas: 3000000,
         from: web3.eth.accounts[0],
     };
+
+
+function remix_wait_for_no_animal() {
+    console.log("wait for no annimal");
+    MoodForestC.hasItem(params_remix_free, remix_wait_for_no_animal_callback);
+}
+
+function remix_wait_for_no_animal_callback(err, link) {
+    if (err) {
+        alert("Error : " + err);
+    } else {
+	    if (link != 0 && link != "0x"){
+            setTimeout(remix_wait_for_no_animal(), 1000);
+        }else{
+            App.addAlert("You have canceled your animal");
+            App.displayPage("chose");
+        }    
+    }
+}
+
+function remix_wait_for_animal() {
+    console.log("wait for annimal");
+    MoodForestC.hasItem(params_remix_free, remix_wait_for_animal_callback);
+}
+
+function remix_wait_for_animal_callback(err, link) {
+    if (err) {
+        alert("Error : " + err);
+    } else {
+	    if (link != 0 && link != "0x"){
+            animal = window.localStorage.getItem('animal');
+            color = window.localStorage.getItem('color');
+            feeling = window.localStorage.getItem('feeling');
+            App.addAlert("You have created an animal: "  + animal + " " + color + " " + feeling + " : " + link);
+            App.displayPage("animal");
+        }else{
+            setTimeout(remix_wait_for_animal(), 1000);;
+        }    
+    }
+}
     
 
 function remix_has_animal() {
@@ -324,7 +364,10 @@ function remix_has_animal_callback(err, link) {
         alert("Error : " + err);
     } else {
 	if (link != 0 && link != "0x"){
-		App.addAlert("You have an animal: " + link);
+        animal = window.localStorage.getItem('animal');
+        color = window.localStorage.getItem('color');
+        feeling = window.localStorage.getItem('feeling');
+		App.addAlert("You have an animal: "  + animal + " " + color + " " + feeling + " : " + link);
 		App.displayPage("animal");
 	}else{
 		App.addAlert("You have not chose an animal today");
@@ -344,14 +387,14 @@ function remix_cancel_animal_callback(err, ans) {
     if (err) {
         alert("Error : " + err);
     } else {
-	App.addAlert("Animal canceled");
-	App.displayPage("chose");
+	    App.addAlert("Animal canceling ...");
+	    setTimeout(remix_wait_for_no_animal(), 1000);
     }
 }
 
 function remix_bet_on_animal(user_key, animal, color, feeling) {
     console.log("creating bet ", user_key, animal, color, feeling);
-    MoodForestC.addItemTest(animal, color, feeling, random_value, params_remix, remix_bet_on_animal_callback)
+    MoodForestC.addItemTest(animal, color, feeling, random_value, params_remix, remix_bet_on_animal_callback);
 }
 
 function remix_bet_on_animal_callback(err, ans) {
@@ -366,6 +409,9 @@ function remix_submit_animal(animal, color, feeling) {
     console.log("creating transaction of", animal, color, feeling);
     random_value = Math.floor(Math.random() * 1000000);
     window.localStorage.setItem('random_value', random_value);
+    window.localStorage.setItem('animal', animal);
+    window.localStorage.setItem('color', color);
+    window.localStorage.setItem('feeling', feeling);
     MoodForestC.addItemTest(animal, color, feeling, random_value, params_remix, remix_submit_animal_callback)
 }
 
@@ -373,8 +419,9 @@ function remix_submit_animal_callback(err, link, link2) {
     if (err) {
         alert("Error : " + err);
     } else {
-        App.addAlert("Animal created " + link + " " + link2);
-	App.displayPage("animal");
+        App.addAlert("Animal creation ... ");        
+        setTimeout(remix_wait_for_animal(), 1000);;  
+        
     }
 }
 
