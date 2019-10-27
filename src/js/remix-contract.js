@@ -332,6 +332,24 @@ function remix_wait_for_no_animal_callback(err, link) {
     }
 }
 
+function remix_wait_for_win() {
+    console.log("wait for win");
+    MoodForestC.hasItem(params_remix_free, remix_wait_for_win_callback);
+}
+
+function remix_wait_for_win_callback(err, link) {
+    if (err) {
+        alert("Error : " + err);
+    } else {
+	    if (link != 0 && link != "0x"){
+            setTimeout(function(){remix_wait_for_win()}, 1000);
+        }else{
+            App.addAlert("Check is done");
+            App.displayPage("chose");
+        }    
+    }
+}
+
 function remix_wait_for_animal() {
     console.log("wait for annimal");
     MoodForestC.hasItem(params_remix_free, remix_wait_for_animal_callback);
@@ -421,8 +439,7 @@ function remix_submit_animal_callback(err, link, link2) {
         alert("Error : " + err);
     } else {
         App.addAlert("Animal creation ... ");        
-        setTimeout(function(){ remix_wait_for_animal()}, 1000); 
-        
+        setTimeout(function(){ remix_wait_for_animal()}, 1000);
     }
 }
 
@@ -440,7 +457,7 @@ function remix_check_animal_callback(err, link) {
         alert("Error : " + err);
     } else {
         App.addAlert("Animal check ... ");        
-        setTimeout(function(){ remix_wait_for_no_animal()}, 1000); 
+        setTimeout(function(){ remix_wait_for_win()}, 1000); 
     }
 }
 
