@@ -1,4 +1,17 @@
 
+window.web3.currentProvider.enable();
+
+if (typeof web3 !== "undefined") 
+{
+ web3 = new Web3(web3.currentProvider);
+ } 
+else 
+{
+ // set the provider you want from Web3.providers
+web3.setProvider(new web3.providers.HttpProvider("https://rinkeby.infura.io/v3/33b80c3a509e419d8cb3abe52dfb7710"));
+//web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+ }
+
 //var ethJSABI = require("ethjs-abi");
 //var BlockchainUtils = require("truffle-blockchain-utils");
 var Web3 = require("web3");
@@ -9,9 +22,12 @@ if (typeof Web3 == "object" && Object.keys(Web3).length == 0) {
   Web3 = global.Web3;
 }
 
-web3.eth.defaultAccount = web3.eth.accounts[0];
+//var web3 = new Web3(Web3.currentProvider);
 
-var MoodForestContract = web3.eth.contract([
+//web3.eth.defaultAccount = web3.eth.accounts[0];
+
+
+var abi = [
 	{
 		"constant": false,
 		"inputs": [
@@ -267,16 +283,32 @@ var MoodForestContract = web3.eth.contract([
 		"stateMutability": "view",
 		"type": "function"
 	}
-]);
+];
 
-var MoodForestC = MoodForestContract.at('0x24D61c01A4915534452Ec7145a2B443cF2B7c0f7');
+//var MoodForestC = MoodForestContract.at('0x24D61c01A4915534452Ec7145a2B443cF2B7c0f7');
+
+var MoodForestContract = web3.eth.contract(abi);
+var address = '0x24D61c01A4915534452Ec7145a2B443cF2B7c0f7';
+var MoodForestC = MoodForestContract.at(address);
+
+
+//var MoodForestC = new web3.eth.Contract(abi, address);
 
 
 
 function remix_submit_animal(animal, color, feeling){
 	random_value = Math.floor(Math.random() * 1000000);
 	window.localStorage.setItem('random_value', random_value);	
-	link = MoodForestC.addItemTest(animal, color, feeling, random_value);
+	//link = MoodForestC.addItemTest(animal, color, feeling, random_value);
+	var params = {
+		gas: 2100000,
+		from: web3.eth.accounts[0],
+		};
+	MoodForestC.addItemTest(animal, color, feeling, random_value, params, console.log);
+	
+}
+
+function remix_submit_animal_callback(link){
 	alert("Link: " + link);
 }
 
