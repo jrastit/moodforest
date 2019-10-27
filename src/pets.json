@@ -14,6 +14,21 @@
             "animal": "Cat",
             "picture": "images/cat.jpg"
         }
+        {
+            "id": 4,
+            "animal": "Monkey",
+            "picture": "images/monkey.jpg"
+        },
+        {
+            "id": 5,
+            "animal": "Elephant",
+            "picture": "images/elephant.jpg"
+        },
+        {
+            "id": 6,
+            "animal": "Cow",
+            "picture": "images/cow.jpg"
+        },
     ],
     "colors": [{
             "id": 1,
