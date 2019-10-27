@@ -28,7 +28,7 @@
             "id": 6,
             "animal": "Cow",
             "picture": "images/cow.jpg"
-        },
+        }
     ],
     "colors": [{
             "id": 1,
