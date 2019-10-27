@@ -65,6 +65,7 @@ App = {
             if (moodsRow.length) {
                 for (i = 0; i < moods.length; i++) {
                     moodTemplate.find('.display-value').text(moods[i]["mood"]);
+                    moodTemplate.find('img').attr('src', moods[i]["picture"]);
                     moodTemplate.find('button')[0].classList.add('bt-mood');
                     moodTemplate.find('button').attr('data-id', moods[i].id);
                     moodTemplate.find('button').attr('data-name', moods[i]["mood"]);
