@@ -260,8 +260,6 @@ var abi = [{
     }
 ];
 
-//var MoodForestC = MoodForestContract.at('0x24D61c01A4915534452Ec7145a2B443cF2B7c0f7');
-
 var MoodForestContract = web3.eth.contract(abi);
 var address = '0x24D61c01A4915534452Ec7145a2B443cF2B7c0f7';
 var MoodForestC = MoodForestContract.at(address);
@@ -269,19 +267,30 @@ var MoodForestC = MoodForestContract.at(address);
 
 //var MoodForestC = new web3.eth.Contract(abi, address);
 
+var params_remix = {
+        gas: 3000000,
+        from: web3.eth.accounts[0],
+    };
+    
 
+function remix_bet_on_animal(user_key, animal, color, feeling) {
+    console.log("creating bet ", user_key, animal, color, feeling);
+    MoodForestC.addItemTest(animal, color, feeling, random_value, params_remix, remix_submit_animal_callback)
+}
+
+function remix_bet_on_animal_callback(err, ans) {
+    if (err) {
+        alert("Error : " + err);
+    } else {
+        alert("Bet ok");
+    }
+}
 
 function remix_submit_animal(animal, color, feeling) {
     console.log("creating transaction of", animal, color, feeling);
     random_value = Math.floor(Math.random() * 1000000);
     window.localStorage.setItem('random_value', random_value);
-    //link = MoodForestC.addItemTest(animal, color, feeling, random_value);
-    var params = {
-        gas: 2100000,
-        from: web3.eth.accounts[0],
-    };
-    MoodForestC.addItemTest(animal, color, feeling, random_value, params, remix_submit_animal_callback)
-
+    MoodForestC.addItemTest(animal, color, feeling, random_value, params_remix, remix_submit_animal_callback)
 }
 
 function remix_submit_animal_callback(err, link) {
