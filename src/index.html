@@ -23,13 +23,6 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-push-2">
-                <button onclick="remix_submit_animal(1, 2, 3)">Test!!!</button>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-push-2">
                 <h1 class="text-center">Mood Forest</h1>
                 <hr/>
                 <br/>
@@ -50,6 +43,13 @@
             <!-- mood LOAD HERE -->
         </div>
         <h6>You selected : <span id="moodSelected"></span></h6>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <button class="btn btn-primary btn-lg" onclick="App.createTransaction()">Submit</button>
+            </div>
+        </div>
     </div>
 
     <div id="animalTemplate" style="display: none;">
