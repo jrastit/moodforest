@@ -301,6 +301,9 @@ function remix_submit_animal_callback(err, link) {
     }
 }
 
+function bet_now(transactionID) {
+
+}
 
 function check_if_exist(transactionID) {
     console.log("check if exist called", transactionID)
