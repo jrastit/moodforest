@@ -21,13 +21,13 @@
         },
         {
             "id": 5,
-            "animal": "Peacock",
-            "picture": "images/peacock.jpg"
+            "animal": "Elephant",
+            "picture": "images/elephant.jpg"
         },
         {
             "id": 6,
-            "animal": "Tortoise",
-            "picture": "images/tortoise.jpg"
+            "animal": "Cow",
+            "picture": "images/cow.jpg"
         },
     ],
     "colors": [{
