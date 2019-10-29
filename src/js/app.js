@@ -1,5 +1,7 @@
 var json_data;
 
+var image_id = 0;
+
 App = {
   animals: null,
   web3Provider: null,
@@ -28,49 +30,68 @@ App = {
   },
 
   displayItem: function(parent, method, argument, picture) {
-    /*
-    $("\
-          <div class=\"col-sm-6 col-md-4 col-lg-3\">\
-            <div class=\"panel panel-default panel-pet\">\
-              <div class=\"panel-body\" onclick=\"App."+ method + "(" + argument + ")\">\
-                <img class=\"img-rounded img-center img-responsive\" src=\"" + picture + "\" data-holder-rendered=\"true\">\
-              </div>\
-            </div>\
-          </div>\
-        </div>").appendTo(parent);
-        */
     $("\
             <div class=\"col-sm-6 col-md-4 col-lg-3\">\
               <div class=\"panel panel-default panel-pet\">\
                 <div class=\"panel-body\"" + (method ? (" onclick=\"App." + method + "(" + argument + ")") : "") + " \">\
-                  <div style=\"background-image:url('" + picture + "');padding-top:100%;background-repeat:no-repeat;background-position:center;background-size:contain;\"></div>\
+                  <div style=\"background-image:url('" + picture + "');\"  class=\"animalBackground\"></div>\
                 </div>\
               </div>\
             </div>\
           </div>").appendTo(parent);
   },
 
-  displayChoseAnimal: function(parent, animal, color, mood) {
-    if (animal) {
-      App.displayItem(parent, "selectAnimal", animal, App.animals[animal - 1]["picture"]);
-    }
-    if (color) {
-      App.displayItem(parent, "selectColor", color, App.colors[color - 1]["picture"]);
-    }
-    if (mood) {
-      App.displayItem(parent, "selectMood", mood, App.moods[mood - 1]["picture"]);
-    }
+  displayItemColor: function(parent, method, argument, color) {
+    $("\
+            <div class=\"col-sm-6 col-md-4 col-lg-3\">\
+              <div class=\"panel panel-default panel-pet\">\
+                <div class=\"panel-body\"" + (method ? (" onclick=\"App." + method + "(" + argument + ")") : "") + " \">\
+                  <div style=\"background-color:" + color + ";\"  class=\"animalBackground\"></div>\
+                </div>\
+              </div>\
+            </div>\
+          </div>").appendTo(parent);
   },
 
-  displayAnimal: function(parent, animal, color, mood) {
+  displayItemCaneva: function(parent, method, argument, picture, colors, mood) {
+    $("\
+            <div class=\"col-sm-6 col-md-4 col-lg-3\">\
+              <div class=\"panel panel-default panel-pet\">\
+                <div class=\"panel-body\"" + (method ? (" onclick=\"App." + method + "(" + argument + ")") : "") + " \">\
+                  <div id=\"image_id_" + image_id + "\" class=\"animalBackground\"></div>\
+                </div>\
+              </div>\
+            </div>\
+          </div>").appendTo(parent);
+    Mandala.init(picture, "image_id_" + image_id, colors, mood);
+    image_id += 1;
+  },
+
+  displayAnimal: function(parent, animal, color, mood, selectFunction, selectValue) {
     if (animal) {
-      App.displayItem(parent, null, animal, App.animals[animal - 1]["picture"]);
-    }
-    if (color) {
-      App.displayItem(parent, null, color, App.colors[color - 1]["picture"]);
-    }
-    if (mood) {
-      App.displayItem(parent, null, mood, App.moods[mood - 1]["picture"]);
+      let colors = null;
+      if (color) {
+        colors = [
+          [App.colors[color - 1].rgb.r, App.colors[color - 1].rgb.g, App.colors[color - 1].rgb.b]
+        ];
+        if (mood) {
+          App.displayItemCaneva(parent, selectFunction, mood, App.animals[animal - 1]["picture"], colors, App.moods[mood - 1]["picture"]);
+        } else {
+          App.displayItemCaneva(parent, selectFunction, color, App.animals[animal - 1]["picture"], colors, null);
+        }
+      } else {
+        colors = [
+          [255, 255, 255]
+        ];
+        App.displayItemCaneva(parent, selectFunction, animal, App.animals[animal - 1]["picture"], colors, null);
+      }
+    } else {
+      if (color) {
+        App.displayItemColor(parent, selectFunction, color, "#" + App.colors[color - 1].hex);
+      }
+      if (mood) {
+        App.displayItem(parent, selectFunction, mood, App.moods[mood - 1]["picture"]);
+      }
     }
   },
 
@@ -176,18 +197,18 @@ App = {
       $("#chose_animal").empty();
       if (!App.selected["animal"]) {
         for (i = 0; i < App.animals.length; i++) {
-          App.displayChoseAnimal($("#chose_animal"), i + 1, 0, 0);
+          App.displayAnimal($("#chose_animal"), i + 1, 0, 0, "selectAnimal");
         }
       } else if (!App.selected["color"]) {
         for (i = 0; i < App.colors.length; i++) {
-          App.displayChoseAnimal($("#chose_animal"), 0, i + 1, 0);
+          App.displayAnimal($("#chose_animal"), App.selected["animal"], i + 1, 0, "selectColor");
         }
       } else if (!App.selected["mood"]) {
         for (i = 0; i < App.moods.length; i++) {
-          App.displayChoseAnimal($("#chose_animal"), 0, 0, i + 1);
+          App.displayAnimal($("#chose_animal"), App.selected["animal"], App.selected["color"], i + 1, "selectMood");
         }
       } else {
-        App.displayChoseAnimal($("#chose_animal"), App.selected["animal"], App.selected["color"], App.selected["mood"]);
+        App.displayAnimal($("#chose_animal"), App.selected["animal"], App.selected["color"], App.selected["mood"], null);
         if (!addr_animal) {
           $('#choseButton').show();
         } else {
@@ -201,6 +222,9 @@ App = {
     if (name == "animal") {
       $("#animal_selected").empty();
       App.displayAnimal($("#animal_selected"), window.localStorage.getItem('animal'), window.localStorage.getItem('color'), window.localStorage.getItem('mood'));
+      console.log($("#animal_selected").children()[0]);
+      $($("#animal_selected").children()[0]).removeClass();
+      $($("#animal_selected").children()[0]).addClass("cel");
       $('#animal').show();
     } else {
       $('#animal').hide();
